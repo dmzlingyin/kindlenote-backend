@@ -10,15 +10,18 @@ const process = function (req, res) {
     //设置文件上传的存放路径
     const desDir = 'E:\\Garage_plan\\kindlenote-backend\\tmp';
     form.uploadDir = desDir;
+    // const surfix = new Date().getTime() + 'note.txt';
     form.parse(req, function (err, fields, file) {
         //文件重命名
-        const fileName = path.join(desDir,'note.txt');
-        fs.rename(file.file.path,fileName,err => {
-            if(err) {
-                console.log(err);
-            }
-        });
-        writeDB(fileName);
+        // const fileName = path.join(desDir,'note.txt');
+        // fs.rename(file.file.path,fileName,err => {
+        //     if(err) {
+        //         console.log(err);
+        //     }
+        // });
+
+        //写入数据库
+        writeDB(file.file.path);
         res.send('OK');
         return;
     });

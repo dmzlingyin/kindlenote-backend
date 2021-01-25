@@ -1,2 +1,0 @@
-2020-12-28 19:57:34 : ----------- Starting Prefs Migration:  Adobe Phtotoshop CC 2018 Build 9  [2020\12\28 at 19:57:34] -----------
-2020-12-28 19:57:34 : Migration is not needed per parameter.  Quitting
