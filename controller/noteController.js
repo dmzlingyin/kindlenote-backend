@@ -38,6 +38,7 @@ const setNoteNum = function (num) {
     const sql = `INSERT INTO note_num(num) VALUES('${num}')`;
     const callback = function (results, fields) {
         console.log('数据写入成功!');
+        return results;
     }
     mysql.sqlConnect(sql, sqlArr, callback);
 }
@@ -52,6 +53,7 @@ const getNoteNum = function () {
         numList = results;
     }
     mysql.sqlConnect(sql, sqlArr, callback);
+    return numList;
 }
 module.exports = {
     getTest,

@@ -1,5 +1,5 @@
 const fs = require('fs')
-// const mysql = require('../controller/noteController');
+const poolsql = require('../controller/noteController');
 const mysql = require('mysql');
 
 const writeDB = function (filePath) {
@@ -11,10 +11,10 @@ const writeDB = function (filePath) {
         } else {
             let tmpData = data.split('==========');
             //删除数组中最后一个空元素
-            tmpData.splice(tmpData.length - 1, 1);
-            const NOTE_NUM = tmpData.length;
-            // let numList = mysql.getNoteNum();
-            // console.log('why:' + numList);
+            tmpData.pop();
+            // const NOTE_NUM = tmpData.length;
+            
+
 
             const connection = mysql.createConnection({
                 host: 'localhost',
@@ -30,7 +30,7 @@ const writeDB = function (filePath) {
                 }
             });
             for (let item of tmpData) {
-              
+
                 let name = item.split('- ')[0].split('(')[0];
                 let start = item.split('- ')[0].lastIndexOf('(') + 1;
                 let end = item.split('- ')[0].lastIndexOf(')');
@@ -45,20 +45,20 @@ const writeDB = function (filePath) {
                 // mysql.setNote(sql);
                 connection.query(sql,function(err,results) {
                     if(err) console.log(err);
-                    
+
                 });
-               
+
             }
             connection.end(function(err) {
                 if(err) {
                     console.log(err.message);
                 }
             });
-         
+
         }
 
     });
     return;
 }
-
+// writeDB('./My Clippings.txt');
 module.exports = writeDB;
