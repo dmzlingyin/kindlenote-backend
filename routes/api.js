@@ -1,12 +1,14 @@
-var express = require('express');
-var process = require('../utils/noteProcess');
-var router = express.Router();
-var note = require('../controller/noteController');
+const express = require('express');
+const process = require('../utils/noteProcess');
+const router = express.Router();
+const note = require('../controller/noteController');
+const userHandler = require('../controller/userController');
 
 /* GET users listing. */
 
 //处理上传的标注文件
-router.post('/noteprocess/',process);
+router.post('/noteprocess',process);
+router.post('/login',userHandler);
 
 //获取note数据
 router.get('/',note.getNote);
