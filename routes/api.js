@@ -13,4 +13,5 @@ router.post('/login',userHandler);
 //获取note数据
 router.get('/',note.getNote);
 router.get('/test',note.getTest);
+router.get('/notenum',note.getNoteNum);
 module.exports = router;

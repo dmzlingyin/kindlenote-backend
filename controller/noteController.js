@@ -44,16 +44,18 @@ const setNoteNum = function (num) {
 }
 
 //获取数据库中标注数量
-const getNoteNum = function () {
+const getNoteNum = function (req,res) {
     const sqlArr = [];
-    const sql = `SELECT * from note_num`;
+    const sql = `SELECT * from note_num order by id desc`;
     var numList = [];
     const callback = function (results, fields) {
-        // return data;
-        numList = results;
+       const delta = results[0].num - results[1].num;
+       res.send({
+           delta
+       });
     }
     mysql.sqlConnect(sql, sqlArr, callback);
-    return numList;
+    // return numList;
 }
 module.exports = {
     getTest,
